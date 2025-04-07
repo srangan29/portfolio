@@ -74,9 +74,7 @@ body {
       margin: 0;
     }
     gap: 1em;
-    img {
-      margin-right: 1em;
-    }
+    padding: 1ch;
   }
   }
 
@@ -88,3 +86,8 @@ body {
     text-wrap: balance;
   }
   
+  .resume {
+    article {
+      display: list-item
+    }
+  }
