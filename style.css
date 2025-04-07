@@ -65,7 +65,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   /* make the grid have as many columns as can fit in the container, each with a minimum width of 15em and a maximum width of 1fr*/
-  }
 
   article {
     display: grid;
@@ -75,6 +74,10 @@ body {
       margin: 0;
     }
     gap: 1em;
+    img {
+      margin-bottom: auto;
+    }
+  }
   }
 
  h1 {
