@@ -56,3 +56,28 @@ body {
   button {
     display: grid;
   }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  /* make the grid have as many columns as can fit in the container, each with a minimum width of 15em and a maximum width of 1fr*/
+  }
+
+  article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    h2 {
+      margin: 0;
+    }
+    gap: 1em;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+  h1, h2, h3, h4, h5, h6{
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  
