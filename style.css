@@ -91,3 +91,9 @@ body {
       display: list-item
     }
   }
+
+  span.timeright {
+    #padding-left: 100px;
+    position: absolute;
+    right: 1em;
+  }
