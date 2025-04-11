@@ -107,5 +107,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   h4.underline {
-    text-decoration: underline ;
+    text-decoration: underline;
   }
+  h4.italics {
+    font-style: italic;
+  }
+
