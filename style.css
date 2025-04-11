@@ -89,8 +89,14 @@ h1, h2, h3, h4, h5, h6 {
   /* resume related css */
   .resume {
     font-family: Helvetica, Arial, sans-serif;
-    h4, h5, h6 {
-      margin: 0;
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 0;
+    }
+    p, ul { 
+    margin: 0; 
+    }
+    h3, h4, h5 {
+      margin-top: 1em;
     }
   }
 
