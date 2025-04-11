@@ -95,12 +95,19 @@ h1, h2, h3, h4, h5, h6 {
     p, ul { 
     margin: 0; 
     }
+    h1, h2 {
+      text-align: center;
+    }
   }
 
   span.timeright {
-    /*padding-left: 100px;*/
-    position: absolute;
+    /*padding-left: 100px;
+    display: flex;
+    /* position: absolute;
     right: 1em;
+    text-align:;
+    justify-content: right;*/
+    float: right;
   }
 
   h4.underline {
