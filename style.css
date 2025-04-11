@@ -86,14 +86,17 @@ body {
     text-wrap: balance;
   }
   
+  /* resume related css */
   .resume {
-    article {
-      display: list-item
+    font-family: Arial, Helvetica, sans-serif;
+    h5 {
+      line-height: 0.5;
+      text-wrap: balance;
     }
   }
 
   span.timeright {
-    #padding-left: 100px;
+    /*padding-left: 100px;*/
     position: absolute;
     right: 1em;
   }
