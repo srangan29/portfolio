@@ -108,11 +108,12 @@ h1, h2, h3, h4, h5, h6 {
       margin-top: 0.5em;
     }
     a.link {
-      text-align: none;
+      text-align: inherit;
       border: none;
     }
     a.link:hover {
-        background-color: none;
+        background-color: inherit;
+        text-decoration-color: blue;
       }
   }
     
