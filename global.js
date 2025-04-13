@@ -73,9 +73,10 @@ document.body.insertAdjacentHTML(
   select.addEventListener('input', function (event) {
     console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', event.target.value);
-  });
+    localStorage.colorScheme = event.target.value;
+});
   
-  /*localStorage.colorScheme = event.target.value;
   if ('colorScheme' in localStorage) {
     select.value = localStorage.colorScheme
-  } */
+    document.documentElement.style.setProperty('color-scheme', select.value);
+  } 
