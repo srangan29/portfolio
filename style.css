@@ -13,7 +13,7 @@ body {
     margin-bottom: auto;
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    --border-color: oklch(50%, 10% 200 / 40%);
+    --border-color: oklch(50% 10% 200 / 40%);
     border-bottom-color: var(--border-color); /*oklch(80% 3% 200);*/
   }
 
@@ -35,6 +35,7 @@ body {
 
   :root {
     --color-accent: lightblue;
+    color-scheme: dark;
   }
 
   a:hover {
@@ -136,7 +137,3 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
     margin-top: 0.5em;
   }
-
-:root {
-  color-scheme: light dark;
-}
