@@ -56,10 +56,16 @@ for (let p of pages) {
     nav.append(a);
 }
 
-
-  /* <nav><a href="../index.html">Home</a>
-        <a href="../projects/index.html">Projects</a>
-        <a href="../contact/index.html">Contact</a> 
-        <a href="../resume/index.html">Resume</a>
-        <a href="https://github.com/srangan29" target="_blank">GitHub</a>
-    </nav> */
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+      <label class="color-scheme">
+          Theme:
+          <select>
+              <!-- TODO add <option> elements here -->
+                <option value="light dark">Automatic</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+      </label>`,
+  );
