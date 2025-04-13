@@ -18,8 +18,8 @@ let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
     // add the rest of your pages here
-    { url: 'contact/', title: 'Projects' },
-    { url: 'resume/', title: 'Projects' },
+    { url: 'contact/', title: 'Contact' },
+    { url: 'resume/', title: 'Resume' },
     { url: 'https://github.com/srangan29', title: 'GitHub' },
   ];
 
@@ -31,16 +31,17 @@ for (let p of pages) {
     let title = p.title;
     // next step: create link and add it to nav
     // Create link and add it to nav
-nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
+    nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
   }
 
   const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"                  // Local server
-  : "/website/";         // GitHub Pages repo name
+  : "/srangan29/";         // GitHub Pages repo name
 
   if (!url.startsWith('http')) {
     url = BASE_PATH + url;
   }
+
 /* or url = !url.startsWith('http') ? BASE_PATH + url : url;*/
 
   /* <nav><a href="../index.html">Home</a>
