@@ -20,7 +20,7 @@ let pages = [
     // add the rest of your pages here
     { url: 'contact/', title: 'Contact' },
     { url: 'resume/', title: 'Resume' },
-    { url: 'https://github.com/srangan29', title: 'GitHub' },
+    { url: 'https://github.com/srangan29', title: 'GitHub' }
   ];
 
 let nav = document.createElement('nav');
@@ -36,7 +36,7 @@ for (let p of pages) {
 
   const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"                  // Local server
-  : "/srangan29/";         // GitHub Pages repo name
+  : "/portfolio/";         // GitHub Pages repo name
 
   if (!url.startsWith('http')) {
     url = BASE_PATH + url;
