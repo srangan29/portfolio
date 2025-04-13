@@ -37,14 +37,25 @@ for (let p of pages) {
   if (!url.startsWith('http')) {
     url = BASE_PATH + url;
   }
+/* or url = !url.startsWith('http') ? BASE_PATH + url : url;*/
 
     // Create link and add it to nav
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
+    if (a.host === location.host && a.pathname === location.pathname) {
+        a.classList.add('current');
+      }
+    if (a.host !== location.host) {
+        a.target = "_blank"
+      }
+     /* or a.classList.toggle(
+  'current',
+  a.host === location.host && a.pathname === location.pathname,
+); */ 
     nav.append(a);
 }
-/* or url = !url.startsWith('http') ? BASE_PATH + url : url;*/
+
 
   /* <nav><a href="../index.html">Home</a>
         <a href="../projects/index.html">Projects</a>
