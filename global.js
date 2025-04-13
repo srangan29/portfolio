@@ -32,7 +32,6 @@ for (let p of pages) {
     // next step: create link and add it to nav
     // Create link and add it to nav
     nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
-  }
 
   const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"                  // Local server
@@ -41,7 +40,7 @@ for (let p of pages) {
   if (!url.startsWith('http')) {
     url = BASE_PATH + url;
   }
-
+}
 /* or url = !url.startsWith('http') ? BASE_PATH + url : url;*/
 
   /* <nav><a href="../index.html">Home</a>
