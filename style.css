@@ -35,7 +35,7 @@ body {
 
   :root {
     --color-accent: lightblue;
-    color-scheme: dark;
+    color-scheme: light dark;
   }
 
   a:hover {
