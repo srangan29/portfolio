@@ -44,7 +44,7 @@ body {
     background-color: color-mix(in oklch, var(--color-accent), canvas 85%); /*oklch(from var(--color-accent) 95% 5% h);*/
   }
 
-  input, textarea, button {
+  select, input, textarea, button {
     font: inherit;
   }
   
@@ -137,3 +137,11 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
     margin-top: 0.5em;
   }
+
+label.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+}
