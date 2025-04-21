@@ -80,3 +80,20 @@ document.body.insertAdjacentHTML(
     select.value = localStorage.colorScheme
     document.documentElement.style.setProperty('color-scheme', select.value);
   } 
+
+
+
+
+  export async function fetchJSON(url) {
+    try {
+      // Fetch the JSON file from the given URL
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching or parsing JSON data:', error);
+    }
+  }
