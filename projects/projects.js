@@ -5,6 +5,7 @@ renderProjects(projects, projectsContainer, 'h2');
 
   const heading = document.querySelector("h1");
   heading.classList.add('projects-title');
+  
   const title = document.querySelector('.projects-title');
-  const projectCounter = document.querySelectorAll('article').length;
+  const projectCounter = projects.length
   title.textContent = `${projectCounter} Projects`;
