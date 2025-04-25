@@ -19,4 +19,4 @@ export function renderProjects(project, containerElement, headingLevel= 'h2') {
   heading.classList.add('projects-title');
   const title = document.querySelector('.projects-title');
   const projectCounter = document.querySelectorAll('article').length;
-  title.textContent = `$(projectCounter)$ Projects`;
+  title.textContent = `${projectCounter} Projects`;
