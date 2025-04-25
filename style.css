@@ -145,3 +145,10 @@ label.color-scheme {
   font-size: 80%;
   font-family: inherit;
 }
+
+h2 {
+  margin-bottom: 0;
+}
+/*div.profile-stats {
+
+}*/
