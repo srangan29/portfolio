@@ -99,9 +99,10 @@ document.body.insertAdjacentHTML(
   }
 
 
-  export function renderProjects(project, containerElement, headingLevel= 'h2') {
+  export function renderProjects(projects, containerElement, headingLevel= 'h2') {
     // Your code will go here
     containerElement.innerHTML = '';
+    for (const project of projects) {
         const article = document.createElement('article'); 
         article.innerHTML = `
         <h3>${project.title}</h3>
@@ -110,3 +111,4 @@ document.body.insertAdjacentHTML(
 `;
         containerElement.appendChild(article);
   }
+}
