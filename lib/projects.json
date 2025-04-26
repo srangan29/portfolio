@@ -1,14 +1,14 @@
 [    {
-    "title": "Project 2: DSC106",
+    "title": "Project 2: Persuasive or Deceptive Visualization",
     "year": "2025",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Project 2: DSC106 - Intro to Data Visualization."
+    "description": "Project 2 for DSC106 - Intro to Data Visualization. In Progress!"
 },
     {
-        "title": "Project 1: DSC106",
+        "title": "Project 1: Expository Visualization",
         "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Project 1: DSC106 - Intro to Data Visualization."
+        "description": "Project 1 for DSC106 - Intro to Data Visualization. Focused on creating a data visualization to depict data from a Grocery Store Foods dataset of 50,000+ foods sold by Walmart, Target, and Whole Foods, including amount of processing, prices, and nutritional information."
     },
     {
         "title": "Final Project: Easy Work Makes the Recipe Work (Or Does It?)",
