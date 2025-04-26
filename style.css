@@ -154,15 +154,13 @@ label.color-scheme {
 }
 }
 
-div.profile-stats {
-dl {
+.profile-stats dl {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-dt {
+}
+.profile-stats dt {
   grid-row: 1;
 }
-dd {
+.profile-stats dd {
   grid-row: 2;
-}
-}
 }
