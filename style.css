@@ -158,11 +158,11 @@ div.profile-stats {
 dl {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
 dt {
   grid-row: 1;
 }
 dd {
   grid-row: 2;
+}
 }
 }
