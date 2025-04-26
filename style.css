@@ -155,7 +155,7 @@ label.color-scheme {
 }
 
 div.profile-stats {
-d1 {
+dl {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
