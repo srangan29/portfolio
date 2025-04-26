@@ -161,6 +161,7 @@ label.color-scheme {
   border: 2px, solid #999;
   padding-left: 0.5em;
   padding-right: 0.5em;
+  background-color: var(--color-accent);
 }
 dt {
   grid-row: 1;
