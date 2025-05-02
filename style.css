@@ -187,7 +187,7 @@ ul.legend {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
   border-width: 2px;
-  border-color: var(--border-color);
+  border-color: grey;
   flex: 1;
   padding-right: 1em;
   padding-left: 1em;
