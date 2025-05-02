@@ -12,7 +12,7 @@ renderProjects(projects, projectsContainer, 'h2');
   const projectCounter = projects.length
   title.textContent = `${projectCounter} Projects`;
 
-
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
 let data = [
   { value: 1, label: 'apples' },
