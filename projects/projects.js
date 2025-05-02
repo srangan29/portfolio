@@ -60,3 +60,37 @@ searchInput.addEventListener('change', (event) => {
   // render filtered projects
   renderProjects(filteredProjects, projectsContainer, 'h2');
 });
+
+
+// Refactor all plotting into one function
+function renderPieChart(projectsGiven) {
+  // re-calculate rolled data
+  let newRolledData = d3.rollups(
+    projectsGiven,
+    (v) => v.length,
+    (d) => d.year,
+  );
+  // re-calculate data
+  let newData = newRolledData.map(([year, count]) => {
+    return { ... }; // TODO
+  });
+
+  // re-calculate slice generator, arc data, arc, etc.
+  let newSliceGenerator = d3.pie().value((d) => d.value);
+  let newArcData = newSliceGenerator(newData);
+  let newArcs = newArcData.map((d) => arcGenerator(d));
+  // TODO: clear up paths and legends
+  ...
+  // update paths and legends, refer to steps 1.4 and 2.2
+  ...
+}
+
+// Call this function on page load
+renderPieChart(projects);
+
+searchInput.addEventListener('change', (event) => {
+  let filteredProjects = setQuery(event.target.value);
+  // re-render legends and pie chart when event triggers
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+  renderPieChart(filteredProjects);
+});
