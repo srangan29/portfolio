@@ -195,7 +195,7 @@ ul.legend {
 
 .swatch {
   display: inline-block;
-  width: 2em;
+  width: 2rem;
   aspect-ratio: 1/1;
   background-color: var(--color);
   border-radius: 50%;
@@ -204,7 +204,7 @@ ul.legend {
 li.li_legend {
   display: flex;
   align-items: center;
-  gap: 3em;
+  gap: 1ch;
 }
 
 .container {
