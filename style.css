@@ -170,3 +170,8 @@ dd {
   grid-row: 2;
 }
 }
+
+.year {
+  font-family: "Baskerville", "Georgia", serif;
+  font-variant-numeric: oldstyle-nums;
+}
