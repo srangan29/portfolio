@@ -188,20 +188,23 @@ ul.legend {
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
   border-width: 2px;
   border-color: var(--border-color);
+  flex: 1;
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .swatch {
   display: inline-block;
   width: 2em;
   aspect-ratio: 1/1;
-  background-color: var(--color-accent);
+  background-color: var(--color);
   border-radius: 50%;
 }
 
 li.li_legend {
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 3em;
 }
 
 .container {
