@@ -12,21 +12,6 @@ renderProjects(projects, projectsContainer, 'h2');
   const projectCounter = projects.length
   title.textContent = `${projectCounter} Projects`;
 
-let query = '';
-let searchInput = document.querySelector('.searchBar');
-
-/*searchInput.addEventListener('change', (event) => {
-  // update query value
-  query = event.target.value;
-  // filter projects
-  let filteredProjects = projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
-  });
-  // render filtered projects
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-});*/
-
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
   // re-calculate rolled data
@@ -70,6 +55,7 @@ newData.forEach((d, idx) => {
 // Call this function on page load
 renderPieChart(projects);
 
+let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('change', (event) => {
   let filteredProjects = setQuery(event.target.value);
   // re-render legends and pie chart when event triggers
@@ -77,7 +63,10 @@ searchInput.addEventListener('change', (event) => {
   renderPieChart(filteredProjects);
 });
 
+
+
 let selectedIndex = -1;
+
 let svg = d3.select('svg');
 svg.selectAll('path').remove();
 arcs.forEach((arc, i) => {
@@ -86,14 +75,28 @@ arcs.forEach((arc, i) => {
     .attr('d', arc)
     .attr('fill', colors(i))
     .on('click', () => {
-      // What should we do? (Keep scrolling to find out!)
+      // What should we do? 
       selectedIndex = selectedIndex === i ? -1 : i;
       
       svg
     .selectAll('path')
     .attr('class', (_, idx) => (
       // TODO: filter idx to find correct pie slice and apply CSS from above
+      idx === selectedIndex ? 'selected' : ''
     ));
+  
+    legend
+    .selectAll('li')
+    .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct legend and apply CSS from above
+      idx === selectedIndex ? 'selected' : ''
+    ));
+    if (selectedIndex === -1) {
+      renderProjects(projects, projectsContainer, 'h2');
+    } else {
+      // TODO: filter projects and project them onto webpage
+      // Hint: `.label` might be useful
+    }
 });
 });
 
