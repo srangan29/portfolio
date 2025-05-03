@@ -30,6 +30,9 @@ searchInput.addEventListener('change', (event) => {
 
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
+  let newSVG = d3.select('svg');
+  newSVG.selectAll('path').remove();
+  
   // re-calculate rolled data
   let newRolledData = d3.rollups(
     projectsGiven,
@@ -71,8 +74,6 @@ newData.forEach((d, idx) => {
 renderPieChart(projects);
 
 searchInput.addEventListener('change', (event) => {
-  let newSVG = d3.select('svg');
-  newSVG.selectAll('path').remove();
   let filteredProjects = setQuery(event.target.value);
   // re-render legends and pie chart when event triggers
   renderProjects(filteredProjects, projectsContainer, 'h2');
