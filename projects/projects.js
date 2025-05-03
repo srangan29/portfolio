@@ -125,7 +125,6 @@ arcs.forEach((arc, i) => {
       let filteredProjects = projects.filter((project) =>
         project.title.includes('.label'));
       renderProjects(filteredProjects, projectsContainer, 'h2');
-      renderPieChart(filteredProjects);
     }
 });
 });
