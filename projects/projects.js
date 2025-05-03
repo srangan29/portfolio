@@ -123,8 +123,7 @@ arcs.forEach((arc, i) => {
       // TODO: filter projects and project them onto webpage
       // Hint: `.label` might be useful
       let filteredProjects = projects.filter((project) =>
-        project.title.includes(.label))
-
+        project.title.includes('.label'));
       renderProjects(filteredProjects, projectsContainer, 'h2');
       renderPieChart(filteredProjects);
     }
