@@ -11,7 +11,15 @@ renderProjects(projects, projectsContainer, 'h2');
   const title = document.querySelector('.projects-title');
   const projectCounter = projects.length
   title.textContent = `${projectCounter} Projects`;
-  
+ 
+  let data = [
+    { value: 1, label: 'apples' },
+    { value: 2, label: 'oranges' },
+    { value: 3, label: 'mangos' },
+    { value: 4, label: 'pears' },
+    { value: 5, label: 'limes' },
+    { value: 5, label: 'cherries' },
+  ];  
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
@@ -94,7 +102,7 @@ arcs.forEach((arc, i) => {
       // TODO: filter idx to find correct legend and apply CSS from above
       idx === selectedIndex ? 'selected' : ''
     ));
-    
+
     if (selectedIndex === -1) {
       renderProjects(projects, projectsContainer, 'h2');
     } else {
