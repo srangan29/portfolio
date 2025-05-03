@@ -25,6 +25,8 @@ let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
   // re-calculate rolled data
@@ -45,7 +47,6 @@ function renderPieChart(projectsGiven) {
   // TODO: clear up paths and legends
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
   newArcs.forEach((arc, idx) => {
     d3.select('svg')
       .append('path')
