@@ -27,6 +27,20 @@ let arcs = arcData.map((d) => arcGenerator(d));
 
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+searchInput.addEventListener('change', (event) => {
+  // update query value
+  query = event.target.value;
+  // filter projects
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+  // render filtered projects
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+});
+
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
   // re-calculate rolled data
@@ -68,7 +82,6 @@ newData.forEach((d, idx) => {
 // Call this function on page load
 renderPieChart(projects);
 
-let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('change', (event) => {
   let filteredProjects = setQuery(event.target.value);
   // re-render legends and pie chart when event triggers
@@ -109,7 +122,9 @@ arcs.forEach((arc, i) => {
     } else {
       // TODO: filter projects and project them onto webpage
       // Hint: `.label` might be useful
-      let filteredProjects = setQuery(event.target.value);
+      let filteredProjects = projects.filter((project) =>
+        project.title.includes(.label))
+
       renderProjects(filteredProjects, projectsContainer, 'h2');
       renderPieChart(filteredProjects);
     }
