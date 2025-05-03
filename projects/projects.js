@@ -15,7 +15,7 @@ renderProjects(projects, projectsContainer, 'h2');
 let query = '';
 let searchInput = document.querySelector('.searchBar');
 
-searchInput.addEventListener('change', (event) => {
+/*searchInput.addEventListener('change', (event) => {
   // update query value
   query = event.target.value;
   // filter projects
@@ -25,14 +25,10 @@ searchInput.addEventListener('change', (event) => {
   });
   // render filtered projects
   renderProjects(filteredProjects, projectsContainer, 'h2');
-});
-
+});*/
 
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
-  let newSVG = d3.select('svg');
-  newSVG.selectAll('path').remove();
-  
   // re-calculate rolled data
   let newRolledData = d3.rollups(
     projectsGiven,
@@ -50,6 +46,8 @@ function renderPieChart(projectsGiven) {
   let newArcData = newSliceGenerator(newData);
   let newArcs = newArcData.map((d) => arcGenerator(d));
   // TODO: clear up paths and legends
+  let newSVG = d3.select('svg');
+  newSVG.selectAll('path').remove();
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
   newArcs.forEach((arc, idx) => {
     d3.select('svg')
@@ -70,7 +68,6 @@ newData.forEach((d, idx) => {
 }
 
 // Call this function on page load
-
 renderPieChart(projects);
 
 searchInput.addEventListener('change', (event) => {
@@ -79,3 +76,24 @@ searchInput.addEventListener('change', (event) => {
   renderProjects(filteredProjects, projectsContainer, 'h2');
   renderPieChart(filteredProjects);
 });
+
+let selectedIndex = -1;
+let svg = d3.select('svg');
+svg.selectAll('path').remove();
+arcs.forEach((arc, i) => {
+  svg
+    .append('path')
+    .attr('d', arc)
+    .attr('fill', colors(i))
+    .on('click', () => {
+      // What should we do? (Keep scrolling to find out!)
+      selectedIndex = selectedIndex === i ? -1 : i;
+      
+      svg
+    .selectAll('path')
+    .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct pie slice and apply CSS from above
+    ));
+});
+});
+
