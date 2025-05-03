@@ -11,6 +11,11 @@ renderProjects(projects, projectsContainer, 'h2');
   const title = document.querySelector('.projects-title');
   const projectCounter = projects.length
   title.textContent = `${projectCounter} Projects`;
+  
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+let sliceGenerator = d3.pie();
+let arcData = sliceGenerator(data);
+let arcs = arcData.map((d) => arcGenerator(d));
 
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
@@ -26,7 +31,6 @@ function renderPieChart(projectsGiven) {
   });
 
   // re-calculate slice generator, arc data, arc, etc.
-  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
   let newSliceGenerator = d3.pie().value((d) => d.value);
   let newArcData = newSliceGenerator(newData);
   let newArcs = newArcData.map((d) => arcGenerator(d));
@@ -62,7 +66,6 @@ searchInput.addEventListener('change', (event) => {
   renderProjects(filteredProjects, projectsContainer, 'h2');
   renderPieChart(filteredProjects);
 });
-
 
 
 let selectedIndex = -1;
