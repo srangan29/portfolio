@@ -20,7 +20,6 @@ renderProjects(projects, projectsContainer, 'h2');
     { value: 5, label: 'limes' },
     { value: 5, label: 'cherries' },
   ];  
-
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
@@ -48,6 +47,7 @@ function renderPieChart(projectsGiven) {
   // TODO: clear up paths and legends
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
+  d3.select('.legend').selectAll('li').remove();
 
   newArcs.forEach((arc, idx) => {
     d3.select('svg')
