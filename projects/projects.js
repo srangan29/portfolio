@@ -72,7 +72,7 @@ renderPieChart(projects);
 
 let query = '';
 let searchInput = document.querySelector('.searchBar');
-searchInput.addEventListener('change', (event) => {
+searchInput.addEventListener('input', (event) => {
   // update query value
   query = event.target.value;
   // filter projects
@@ -117,11 +117,9 @@ arcs.forEach((arc, i) => {
     } else {
       // TODO: filter projects and project them onto webpage
       // Hint: `.label` might be useful
-      let label_query = '.label';
-
       let filteredProjects = projects.filter((project) => {
         let values = Object.values(project).join('\n').toLowerCase();
-        return values.includes('.label'.toLowerCase());
+        return values.includes('.label');
       });
       renderProjects(filteredProjects, projectsContainer, 'h2');
     }
