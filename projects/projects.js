@@ -41,6 +41,7 @@ searchInput.addEventListener('change', (event) => {
   renderProjects(filteredProjects, projectsContainer, 'h2');
 });
 
+/*
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
   // re-calculate rolled data
@@ -128,3 +129,4 @@ arcs.forEach((arc, i) => {
 });
 });
 
+*/
