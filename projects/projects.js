@@ -61,6 +61,7 @@ function renderPieChart(projectsGiven) {
   // TODO: clear up paths and legends
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
+
   newArcs.forEach((arc, idx) => {
     d3.select('svg')
       .append('path')
@@ -92,8 +93,6 @@ searchInput.addEventListener('change', (event) => {
 
 let selectedIndex = -1;
 
-let svg = d3.select('svg');
-svg.selectAll('path').remove();
 arcs.forEach((arc, i) => {
   svg
     .append('path')
