@@ -85,9 +85,10 @@ searchInput.addEventListener('change', (event) => {
   renderPieChart(filteredProjects);
 });
 
-/*
-let selectedIndex = -1;
 
+let selectedIndex = -1;
+let svg = d3.select('svg');
+svg.selectAll('path').remove();
 arcs.forEach((arc, i) => {
   svg
     .append('path')
@@ -116,11 +117,14 @@ arcs.forEach((arc, i) => {
     } else {
       // TODO: filter projects and project them onto webpage
       // Hint: `.label` might be useful
-      let filteredProjects = projects.filter((project) =>
-        project.title.includes('.label'));
+      let label_query = '.label';
+
+      let filteredProjects = projects.filter((project) => {
+        let values = Object.values(project).join('\n').toLowerCase();
+        return values.includes('.label'.toLowerCase());
+      });
       renderProjects(filteredProjects, projectsContainer, 'h2');
     }
 });
 });
 
-*/
