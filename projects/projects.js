@@ -20,26 +20,13 @@ renderProjects(projects, projectsContainer, 'h2');
     { value: 5, label: 'limes' },
     { value: 5, label: 'cherries' },
   ];  
+
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
-
-let query = '';
-let searchInput = document.querySelector('.searchBar');
-searchInput.addEventListener('change', (event) => {
-  // update query value
-  query = event.target.value;
-  // filter projects
-  let filteredProjects = projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
-  });
-  // render filtered projects
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-});
 
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
@@ -83,9 +70,17 @@ newData.forEach((d, idx) => {
 // Call this function on page load
 renderPieChart(projects);
 
+let query = '';
+let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('change', (event) => {
-  let filteredProjects = setQuery(event.target.value);
-  // re-render legends and pie chart when event triggers
+  // update query value
+  query = event.target.value;
+  // filter projects
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+  // render filtered projects
   renderProjects(filteredProjects, projectsContainer, 'h2');
   renderPieChart(filteredProjects);
 });
