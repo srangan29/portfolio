@@ -41,7 +41,6 @@ searchInput.addEventListener('change', (event) => {
   renderProjects(filteredProjects, projectsContainer, 'h2');
 });
 
-/*
 // Refactor all plotting into one function
 function renderPieChart(projectsGiven) {
   // re-calculate rolled data
@@ -91,7 +90,7 @@ searchInput.addEventListener('change', (event) => {
   renderPieChart(filteredProjects);
 });
 
-
+/*
 let selectedIndex = -1;
 
 arcs.forEach((arc, i) => {
