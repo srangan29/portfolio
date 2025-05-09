@@ -114,6 +114,48 @@ dots
   .attr('cy', (d) => yScale(d.hourFrac))
   .attr('r', 5)
   .attr('fill', 'steelblue');
+
+
+const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+const usableArea = {
+  top: margin.top,
+  right: width - margin.right,
+  bottom: height - margin.bottom,
+  left: margin.left,
+  width: width - margin.left - margin.right,
+  height: height - margin.top - margin.bottom,
+};
+
+// Update scales with new ranges
+xScale.range([usableArea.left, usableArea.right]);
+yScale.range([usableArea.bottom, usableArea.top]);
+
+// Create the axes
+const xAxis = d3.axisBottom(xScale);
+const yAxis = d3
+.axisLeft(yScale);
+ .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
+
+ // Add X axis
+svg
+  .append('g')
+  .attr('transform', `translate(0, ${usableArea.bottom})`)
+  .call(xAxis);
+
+// Add Y axis
+svg
+  .append('g')
+  .attr('transform', `translate(${usableArea.left}, 0)`)
+  .call(yAxis);
+
+// Add gridlines BEFORE the axes
+const gridlines = svg
+  .append('g')
+  .attr('class', 'gridlines')
+  .attr('transform', `translate(${usableArea.left}, 0)`);
+
+// Create gridlines as an axis with no labels and full-width ticks
+gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 }
 
 
