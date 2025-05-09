@@ -104,6 +104,9 @@ const xScale = d3
 
 const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
+const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+const rScale = d3.scaleLinear().domain([minLines, maxLines]).range([2, 30]); // adjust these values based on your experimentation
+
 const dots = svg.append('g').attr('class', 'dots');
 
 dots
@@ -122,7 +125,6 @@ dots
     // TODO: Hide the tooltip
     updateTooltipVisibility(false);
   });
-
 
 const margin = { top: 10, right: 10, bottom: 30, left: 20 };
 const usableArea = {
