@@ -90,7 +90,7 @@ searchInput.addEventListener('input', (event) => {
 
 let selectedIndex = -1;
 let svg = d3.select('svg');
-svg.selectAll('path').remove();
+/*svg.selectAll('path').remove();*/
 arcs.forEach((arc, i) => {
   svg
     .append('path')
@@ -106,7 +106,6 @@ arcs.forEach((arc, i) => {
       // TODO: filter idx to find correct pie slice and apply CSS from above
       idx === selectedIndex ? 'selected' : ''
     ));
-
     let legend = d3.select('.legend');
     legend
     .selectAll('li')
