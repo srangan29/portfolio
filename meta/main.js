@@ -13,12 +13,6 @@ async function loadData() {
   return data;
 }
 
-let data = await loadData();
-console.log(data)
-let commits = d3.groups(data, (d) => d.commit);
-console.log(commits);
-
-/*
 function processCommits(data) {
   return d3
     .groups(data, (d) => d.commit)
@@ -40,7 +34,7 @@ function processCommits(data) {
         date,
         time,
         timezone,
-        datatime,
+        datetime,
          // Calculate hour as a decimal for time analysis
         // e.g., 2:30 PM = 14.5
         hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
@@ -60,8 +54,9 @@ function processCommits(data) {
 }
 
 let data = await loadData();
-let commits = d3.groups(data, (d) => d.commit);
+let commits = processCommits(data);
 console.log(commits);
+
 /*
 function renderCommitInfo(data, commits) {
   // Create the dl element
