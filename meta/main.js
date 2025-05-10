@@ -53,9 +53,9 @@ function processCommits(data) {
     });
 }
 
-let data = await loadData();
+/*let data = await loadData();
 let commits = processCommits(data);
-console.log(commits);
+console.log(commits);*/
 
 function renderCommitInfo(data, commits) {
   // Create the dl element
@@ -92,10 +92,6 @@ dl.append('dt').text('Period with most work');
 dl.append('dd').text(maxPeriod);
 }
 
-let data = await loadData();
-let commits = processCommits(data);
-
-/*
 renderCommitInfo(data, commits);
 
 function renderScatterPlot(data, commits) {
@@ -164,8 +160,8 @@ yScale.range([usableArea.bottom, usableArea.top]);
 // Create the axes
 const xAxis = d3.axisBottom(xScale);
 const yAxis = d3
-.axisLeft(yScale);
- .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
+.axisLeft(yScale)
+.tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
 
  // Add X axis
 svg
@@ -213,6 +209,7 @@ function updateTooltipVisibility(isVisible) {
   tooltip.hidden = !isVisible;
 }
 
+/*
 function createBrushSelector(svg) {
   svg.call(d3.brush());
 
