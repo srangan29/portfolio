@@ -56,10 +56,7 @@ function renderPieChart(projectsGiven) {
       .append('path')
       .attr('d', arc)
       .attr('fill', colors(idx)) // Fill in the attribute for fill color via indexing the colors variable
-      .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i;
-      })
-    })
+  })
 
 let legend = d3.select('.legend');
 newData.forEach((d, idx) => {
@@ -93,20 +90,18 @@ searchInput.addEventListener('input', (event) => {
 
 let selectedIndex = -1;
 let svg = d3.select('svg');
-svg.selectAll('path').remove();
-
+/*svg.selectAll('path').remove();*/
 arcs.forEach((arc, i) => {
-  console.log('Appending');
   svg
     .append('path')
     .attr('d', arc)
     .attr('fill', colors(i))
     .on('click', () => {
-      console.log('click', i);
+      console.log('click')
       // What should we do? 
       selectedIndex = selectedIndex === i ? -1 : i;
       
-    svg
+      svg
     .selectAll('path')
     .attr('class', (_, idx) => (
       // TODO: filter idx to find correct pie slice and apply CSS from above
@@ -121,7 +116,7 @@ arcs.forEach((arc, i) => {
       idx === selectedIndex ? 'selected' : ''
     ));
   
-    if (selectedIndex === -1) {
+/*    if (selectedIndex === -1) {
       renderProjects(projects, projectsContainer, 'h2');
     } else {
       // TODO: filter projects and project them onto webpage
@@ -131,6 +126,6 @@ arcs.forEach((arc, i) => {
          return project.year === selectedLabel;
       });
       renderProjects(filteredProjects, projectsContainer, 'h2');
-    } 
+    } */
 });
 }); 
