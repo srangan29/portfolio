@@ -92,8 +92,6 @@ dl.append('dt').text('Period with most work');
 dl.append('dd').text(maxPeriod);
 }
 
-renderCommitInfo(data, commits);
-
 function renderScatterPlot(data, commits) {
  // Put all the JS code of Steps inside this function
 const width = 1000;
@@ -137,7 +135,7 @@ dots
     updateTooltipVisibility(true);
     updateTooltipPosition(event);
   })
-  .on('mouseleave', () => {
+  .on('mouseleave', (event) => {
     // TODO: Hide the tooltip
     d3.select(event.currentTarget).style('fill-opacity', 0.7);
     updateTooltipVisibility(false);
@@ -157,6 +155,15 @@ const usableArea = {
 xScale.range([usableArea.left, usableArea.right]);
 yScale.range([usableArea.bottom, usableArea.top]);
 
+// Add gridlines BEFORE the axes
+const gridlines = svg
+  .append('g')
+  .attr('class', 'gridlines')
+  .attr('transform', `translate(${usableArea.left}, 0)`);
+
+// Create gridlines as an axis with no labels and full-width ticks
+gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+
 // Create the axes
 const xAxis = d3.axisBottom(xScale);
 const yAxis = d3
@@ -175,19 +182,11 @@ svg
   .attr('transform', `translate(${usableArea.left}, 0)`)
   .call(yAxis);
 
-// Add gridlines BEFORE the axes
-const gridlines = svg
-  .append('g')
-  .attr('class', 'gridlines')
-  .attr('transform', `translate(${usableArea.left}, 0)`);
-
-// Create gridlines as an axis with no labels and full-width ticks
-gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 }
-
 
 let data = await loadData();
 let commits = processCommits(data);
+renderCommitInfo(data, commits);
 
 renderScatterPlot(data, commits);
 
@@ -207,6 +206,12 @@ function renderTooltipContent(commit) {
 function updateTooltipVisibility(isVisible) {
   const tooltip = document.getElementById('commit-tooltip');
   tooltip.hidden = !isVisible;
+}
+
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.style.left = `${event.clientX}px`;
+  tooltip.style.top = `${event.clientY}px`;
 }
 
 /*
