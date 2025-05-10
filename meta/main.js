@@ -57,7 +57,6 @@ let data = await loadData();
 let commits = processCommits(data);
 console.log(commits);
 
-/*
 function renderCommitInfo(data, commits) {
   // Create the dl element
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
@@ -77,17 +76,26 @@ function renderCommitInfo(data, commits) {
   (d) => d.file,
 );
 const averageFileLength = d3.mean(fileLengths, (d) => d[1]);
+
 const workByPeriod = d3.rollups(
   data,
   (v) => v.length,
   (d) => new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' }),
 );
-onst maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
+const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
+//add average file length
+dl.append('dt').text('Average file length');
+dl.append('dd').text(averageFileLength);
+
+//add period with most work
+dl.append('dt').text('Period with most work');
+dl.append('dd').text(maxPeriod);
 }
 
 let data = await loadData();
 let commits = processCommits(data);
 
+/*
 renderCommitInfo(data, commits);
 
 function renderScatterPlot(data, commits) {
