@@ -1,5 +1,13 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 async function loadData() {
+  const data = await d3.csv('loc.csv');
+  console.log(data);
+  return data;
+}
+
+let data = await loadData();
+
+/*async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
     ...row,
     line: Number(row.line), // or just +row.line
@@ -12,6 +20,13 @@ async function loadData() {
   return data;
 }
 
+
+let data = await loadData();
+console.log(data)
+let commits = d3.groups(data, (d) => d.commit);
+console.log(commits);
+
+/*
 function processCommits(data) {
   return d3
     .groups(data, (d) => d.commit)
@@ -25,10 +40,10 @@ function processCommits(data) {
       let { author, date, time, timezone, datetime } = first;
         
       // What information should we return about this commit?
-      return {
+      let ret = {
         id: commit,
         // ... what else?
-        url: 'https://github.com/vis-society/lab-7/commit/' + commit,
+        url: 'https://github.com/srangan29/portfolio/commit/' + commit,
         author,
         date,
         time,
@@ -45,8 +60,8 @@ function processCommits(data) {
         // What other options do we need to set?
         // Hint: look up configurable, writable, and enumerable
         configurable: true,
-        writable: false,
-        enumerable: true
+        writable: true,
+        enumerable: false
       });
         return ret;
     });
