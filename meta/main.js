@@ -92,6 +92,10 @@ dl.append('dt').text('Period with most work');
 dl.append('dd').text(maxPeriod);
 }
 
+let data = await loadData();
+let commits = processCommits(data);
+const width = 1000;
+const height = 600;
 let xScale = d3
   .scaleTime()
   .domain(d3.extent(commits, (d) => d.datetime))
@@ -183,10 +187,7 @@ svg
 
 }
 
-let data = await loadData();
-let commits = processCommits(data);
 renderCommitInfo(data, commits);
-
 renderScatterPlot(data, commits);
 
 function renderTooltipContent(commit) {
@@ -232,7 +233,7 @@ function brushed(event) {
 }
 
 // Update brush initialization to listen for events
-d3.select(svg).call(d3.brush().on('start brush end', brushed));
+d3.select('svg').call(d3.brush().on('start brush end', brushed));
 
 function isCommitSelected(selection, commit) {
   if (!selection) {
