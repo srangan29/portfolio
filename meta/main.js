@@ -185,6 +185,7 @@ svg
   .attr('transform', `translate(${usableArea.left}, 0)`)
   .call(yAxis);
 
+createBrushSelector(svg);
 }
 
 renderCommitInfo(data, commits);
