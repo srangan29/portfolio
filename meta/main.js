@@ -44,6 +44,9 @@ function processCommits(data) {
         value: lines,
         // What other options do we need to set?
         // Hint: look up configurable, writable, and enumerable
+        configurable: true,
+        writable: false,
+        enumerable: true
       });
         return ret;
     });
@@ -52,7 +55,7 @@ function processCommits(data) {
 let data = await loadData();
 let commits = d3.groups(data, (d) => d.commit);
 console.log(commits);
-
+/*
 function renderCommitInfo(data, commits) {
   // Create the dl element
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
@@ -274,3 +277,4 @@ function renderLanguageBreakdown(selection) {
         `;
   }
 }
+*/
