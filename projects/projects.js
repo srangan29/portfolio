@@ -51,12 +51,43 @@ function renderPieChart(projectsGiven) {
   d3.select('.legend').selectAll('li').remove();
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+  let selectedIndex = -1;
   newArcs.forEach((arc, idx) => {
     d3.select('svg')
       .append('path')
       .attr('d', arc)
       .attr('fill', colors(idx)) // Fill in the attribute for fill color via indexing the colors variable
-  })
+      .on('click', () => {
+        selectedIndex = selectedIndex === idx ? -1 : idx;
+
+         newSVG
+    .selectAll('path')
+    .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct pie slice and apply CSS from above
+      idx === selectedIndex ? 'selected' : ''
+    ));
+
+    let legend = d3.select('.legend');
+    legend
+    .selectAll('li')
+    .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct legend and apply CSS from above
+      idx === selectedIndex ? 'selected' : ''
+    ));
+  if (selectedIndex === -1) {
+      renderProjects(projects, projectsContainer, 'h2');
+    } else {
+      // TODO: filter projects and project them onto webpage
+      // Hint: `.label` might be useful
+      let selectedLabel = data[selectedIndex].label
+      let filteredProjects = projects.filter((project) => {
+         return project.year === selectedLabel;
+      });
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+    } 
+      })
+    })
 
 let legend = d3.select('.legend');
 newData.forEach((d, idx) => {
@@ -87,10 +118,10 @@ searchInput.addEventListener('input', (event) => {
   renderPieChart(filteredProjects);
 });
 
-
+/*
 let selectedIndex = -1;
 let svg = d3.select('svg');
-/*svg.selectAll('path').remove();*/
+svg.selectAll('path').remove();
 arcs.forEach((arc, i) => {
   svg
     .append('path')
@@ -116,7 +147,7 @@ arcs.forEach((arc, i) => {
       idx === selectedIndex ? 'selected' : ''
     ));
   
-/*    if (selectedIndex === -1) {
+  if (selectedIndex === -1) {
       renderProjects(projects, projectsContainer, 'h2');
     } else {
       // TODO: filter projects and project them onto webpage
@@ -126,6 +157,6 @@ arcs.forEach((arc, i) => {
          return project.year === selectedLabel;
       });
       renderProjects(filteredProjects, projectsContainer, 'h2');
-    } */
+    } 
 });
-}); 
+}); */
