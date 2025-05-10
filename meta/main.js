@@ -88,7 +88,7 @@ dl.append('dt').text('Average file length');
 dl.append('dd').text(averageFileLength);
 
 //add period with most work
-dl.append('dt').text('Period with most work');
+dl.append('dt').text('Period of most work: ');
 dl.append('dd').text(maxPeriod);
 }
 
