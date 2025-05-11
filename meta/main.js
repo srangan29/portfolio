@@ -135,7 +135,7 @@ const svg = d3
   .style('overflow', 'visible');
 
 const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
-const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]); // adjust these values based on your experimentation
+const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 25]); // adjust these values based on your experimentation
 
 const dots = svg.append('g').attr('class', 'dots');
 
