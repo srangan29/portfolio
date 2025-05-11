@@ -70,20 +70,18 @@ function renderCommitInfo(data, commits) {
   dl.append('dd').text(commits.length);
 
   // Add more stats as needed...
-  const depths = d3.rollups(
-    data,
-    (v) => d3.max(v, (v) => v.line),
-    (d) => d.file,
-  )
-  maxDepth = d3.max(data, d => d.depth);
+  
+  const maxDepth = d3.max(data, d => d.depth);
   //add max depth
   dl.append('dt').text('Max Depth ');
   dl.append('dd').text(maxDepth);
 
+  const longLine = d3.max(data, d => d.length);
   //add longest line
   dl.append('dt').text('Longest Line');
   dl.append('dd').text(longLine);
 
+  const maxLines = d3.max(data, d => d.line);
   //add max lines
   dl.append('dt').text('Max Lines');
   dl.append('dd').text(maxLines);
