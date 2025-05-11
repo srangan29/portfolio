@@ -70,6 +70,24 @@ function renderCommitInfo(data, commits) {
   dl.append('dd').text(commits.length);
 
   // Add more stats as needed...
+  const depths = d3.rollups(
+    data,
+    (v) => d3.max(v, (v) => v.line),
+    (d) => d.file,
+  )
+  maxDepth = d3.max(data, d => d.depth);
+  //add max depth
+  dl.append('dt').text('Max Depth ');
+  dl.append('dd').text(maxDepth);
+
+  //add longest line
+  dl.append('dt').text('Longest Line');
+  dl.append('dd').text(longLine);
+
+  //add max lines
+  dl.append('dt').text('Max Lines');
+  dl.append('dd').text(maxLines);
+
   const fileLengths = d3.rollups(
   data,
   (v) => d3.max(v, (v) => v.line),
@@ -83,6 +101,7 @@ const workByPeriod = d3.rollups(
   (d) => new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' }),
 );
 const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
+
 //add average file length
 dl.append('dt').text('Average file length');
 dl.append('dd').text(averageFileLength);
