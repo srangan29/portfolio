@@ -283,17 +283,28 @@ circle.selected {
 #stats {
   dl {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  border: 2px, solid #999;
+  grid-template-columns: repeat(auto-fit, 1fr);
+  /*border: 2px solid #999;
   /*padding-left: 0.5em;
-  padding-right: 0.5em;*/
-  background-color: var(--color-accent);
+  padding-right: 0.5em;
+  background-color: var(--color-accent);*/
+  /*gap: 1rem;*/
+  justify-items: center;
 }
 dt {
   grid-row: 1;
+  font-family: 'Roboto', sans-serif;
+  /*font-weight: bold;*/
+  text-transform: uppercase;
+  font-size: 8px;
+  margin: 0;
 }
 dd {
   grid-row: 2;
+  /*font-size: 18px;
+  align-items: center;*/
+  margin: 0;
+  /*font-family: 'Consolas';*/
 }
 }
 
@@ -317,9 +328,18 @@ dl.info {
 }
 
 #language-breakdown {
-  font-family: Orbitron, sans-serif;
+  /*font-family: Orbitron, sans-serif;*/
+  font-family: 'Consolas', sans-serif;
   display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr);
+  justify-items: center;
   dt {
-    text-transform: capitalize;
+    text-transform: uppercase;
+    grid-row: 1;
+    margin: 0;
+  }
+  dd {
+    grid-row: 2;
+    margin: 0;
   }
 }
