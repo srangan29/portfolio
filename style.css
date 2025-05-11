@@ -260,7 +260,7 @@ dl.info[hidden]:not(:hover, :focus-within) {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5%;
   backdrop-filter: blur(10px) saturate(1.5);
-  padding: 2rem;
+  padding: 1rem;
 }
 #commit-link:hover {
   background-color: var(--color-accent);
