@@ -129,10 +129,10 @@ selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", tim
 // filtering commits by time
 let filteredCommits = [];
 function filterCommitsByTime() {
-  console.log(commitMaxTime);
   filteredCommits = commits.filter((commit) => { 
-      //console.log(commit.datetime, commit.datetime < commitMaxTime);
-      return commit.datetime.getTime() < commitMaxTime.getTime();
+    console.log(commitMaxTime);
+      console.log(commit.datetime, commit.datetime < commitMaxTime);
+      return commit.datetime < commitMaxTime;
   });
 }
 filterCommitsByTime();
@@ -342,8 +342,8 @@ function renderLanguageBreakdown(selection) {
 }
 
 function updateTimeDisplay() {
-  commitMaxTime = Number(timeSlider.value); // Get slider value
-  selectedTime.text(timeScale.invert(commitMaxTime).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+  commitMaxTime = timeScale.invert(Number(timeSlider.value)); // Get slider value
+  selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
   filterCommitsByTime();
   updateScatterPlot(data, filteredCommits);
 }
