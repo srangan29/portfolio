@@ -12,6 +12,10 @@
 <h1>Meta</h1>
 This page includes stats about the code of this website.
 <div id="stats"></div>
+<label>Show commits until:
+  <input type=range min=0 max=100 id="timeSlider">
+  <time id="selectedTime"></time>
+</label>
 <h2>Commits by time of day</h2>
 <div id="chart"></div>
 <dl id="commit-tooltip" class="info tooltip" hidden>
