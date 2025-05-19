@@ -113,14 +113,29 @@ dl.append('dd').text(maxPeriod);
 let data = await loadData();
 let commits = processCommits(data);
 
+// FILTER FOR COMMITS BY TIME
+let commitProgress = 100; // represents max time in percentage
+//creating time scale to map percent to date
+let timeScale = d3.scaleTime(
+  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
+  [0, 100],
+);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+const timeSlider = document.getElementById('timeSlider');
+const selectedTime = d3.select('#selectedTime');
+selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+
 // filtering commits by time
-let filteredCommits = commits;
+let filteredCommits = [];
 function filterCommitsByTime() {
+  console.log(commitMaxTime);
   filteredCommits = commits.filter((commit) => { 
-      return commit.datetime < commitMaxTime;
+      //console.log(commit.datetime, commit.datetime < commitMaxTime);
+      return commit.datetime.getTime() < commitMaxTime.getTime();
   });
 }
-
+filterCommitsByTime();
 
 //global variables for scatterplot rendering
 const width = 1000;
@@ -219,8 +234,8 @@ svg
 createBrushSelector(svg);
 }
 
-renderCommitInfo(data, commits);
-updateScatterPlot(data, commits);
+renderCommitInfo(data, filteredCommits);
+updateScatterPlot(data, filteredCommits);
 
 function renderTooltipContent(commit) {
   const link = document.getElementById('commit-link');
@@ -281,7 +296,7 @@ function isCommitSelected(selection, commit) {
 
 function renderSelectionCount(selection) {
   const selectedCommits = selection
-    ? commits.filter((d) => isCommitSelected(selection, d))
+    ? filteredCommits.filter((d) => isCommitSelected(selection, d))
     : [];
 
   const countElement = document.querySelector('#selection-count');
@@ -294,7 +309,7 @@ function renderSelectionCount(selection) {
 
 function renderLanguageBreakdown(selection) {
   const selectedCommits = selection
-    ? commits.filter((d) => isCommitSelected(selection, d))
+    ? filteredCommits.filter((d) => isCommitSelected(selection, d))
     : [];
   const container = document.getElementById('language-breakdown');
 
@@ -302,7 +317,7 @@ function renderLanguageBreakdown(selection) {
     container.innerHTML = '';
     return;
   }
-  const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+  const requiredCommits = selectedCommits.length ? selectedCommits : filteredCommits;
   const lines = requiredCommits.flatMap((d) => d.lines);
 
   // Use d3.rollup to count lines per language
@@ -326,24 +341,9 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
-// FILTER FOR COMMITS BY TIME
-let commitProgress = 100; // represents max time in percentage
-//creating time scale to map percent to date
-let timeScale = d3.scaleTime(
-  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
-  [0, 100],
-);
-let commitMaxTime = timeScale.invert(commitProgress);
-
-const timeSlider = document.getElementById('timeSlider');
-const selectedTime = d3.select('#selectedTime');
-selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
-
-
-
 function updateTimeDisplay() {
-  commitProgress = Number(timeSlider.value); // Get slider value
-  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+  commitMaxTime = Number(timeSlider.value); // Get slider value
+  selectedTime.text(timeScale.invert(commitMaxTime).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
   filterCommitsByTime();
   updateScatterPlot(data, filteredCommits);
 }
