@@ -109,6 +109,7 @@ dl.append('dt').text('Period of most work: ');
 dl.append('dd').text(maxPeriod);
 }
 
+// LOADING DATA + COMMITS PROCESSING
 let data = await loadData();
 let commits = processCommits(data);
 const width = 1000;
@@ -327,9 +328,16 @@ selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", tim
 function updateTimeDisplay() {
   commitProgress = Number(timeSlider.value); // Get slider value
   selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+  updateFilteredCommits();
+}
+
+let filteredCommits = commits;
+function updateFilteredCommits() {
+  filteredCommits = commits.filter((commit) => { 
+      return commit.datetime <= commitMaxTime;
+  });
 }
 
 timeSlider.addEventListener('input', updateTimeDisplay);
 updateTimeDisplay();
-
 
