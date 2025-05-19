@@ -113,34 +113,14 @@ dl.append('dd').text(maxPeriod);
 let data = await loadData();
 let commits = processCommits(data);
 
-// FILTER FOR COMMITS BY TIME
-let commitProgress = 100; // represents max time in percentage
-//creating time scale to map percent to date
-let timeScale = d3.scaleTime(
-  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
-  [0, 100],
-);
-let commitMaxTime = timeScale.invert(commitProgress);
-
-const timeSlider = document.getElementById('timeSlider');
-const selectedTime = d3.select('#selectedTime');
-selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
-
+// filtering commits by time
 let filteredCommits = commits;
-function updateFilteredCommits() {
+function filterCommitsByTime() {
   filteredCommits = commits.filter((commit) => { 
       return commit.datetime < commitMaxTime;
   });
 }
 
-function updateTimeDisplay() {
-  commitProgress = Number(timeSlider.value); // Get slider value
-  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
-  updateFilteredCommits();
-}
-
-timeSlider.addEventListener('input', updateTimeDisplay);
-updateTimeDisplay();
 
 //global variables for scatterplot rendering
 const width = 1000;
@@ -152,7 +132,7 @@ let xScale = d3
   .nice();
 let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
-function renderScatterPlot(data, filteredCommits) {
+function updateScatterPlot(data, filteredCommits) {
  // Put all the JS code of Steps inside this function
 const width = 1000;
 const height = 600;
@@ -240,7 +220,7 @@ createBrushSelector(svg);
 }
 
 renderCommitInfo(data, commits);
-renderScatterPlot(data, commits);
+updateScatterPlot(data, commits);
 
 function renderTooltipContent(commit) {
   const link = document.getElementById('commit-link');
@@ -346,3 +326,27 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
+// FILTER FOR COMMITS BY TIME
+let commitProgress = 100; // represents max time in percentage
+//creating time scale to map percent to date
+let timeScale = d3.scaleTime(
+  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
+  [0, 100],
+);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+const timeSlider = document.getElementById('timeSlider');
+const selectedTime = d3.select('#selectedTime');
+selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+
+
+
+function updateTimeDisplay() {
+  commitProgress = Number(timeSlider.value); // Get slider value
+  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+  filterCommitsByTime();
+  updateScatterPlot(data, filteredCommits);
+}
+
+timeSlider.addEventListener('input', updateTimeDisplay);
+updateTimeDisplay();
