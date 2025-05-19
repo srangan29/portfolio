@@ -322,11 +322,11 @@ let commitMaxTime = timeScale.invert(commitProgress);
 
 const timeSlider = document.getElementById('timeSlider');
 const selectedTime = d3.select('#selectedTime');
-selectedTime.text(commitMaxTime.toLocaleString());
+selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
 
 function updateTimeDisplay() {
   commitProgress = Number(timeSlider.value); // Get slider value
-  selectedTime.text(timeScale.invert(commitProgress).toLocaleString());
+  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
 }
 
 timeSlider.addEventListener('input', updateTimeDisplay);
