@@ -112,34 +112,67 @@ dl.append('dd').text(maxPeriod);
 // LOADING DATA + COMMITS PROCESSING
 let data = await loadData();
 let commits = processCommits(data);
+
+// FILTER FOR COMMITS BY TIME
+let commitProgress = 100; // represents max time in percentage
+//creating time scale to map percent to date
+let timeScale = d3.scaleTime(
+  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
+  [0, 100],
+);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+const timeSlider = document.getElementById('timeSlider');
+const selectedTime = d3.select('#selectedTime');
+selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+
+let filteredCommits = commits;
+function updateFilteredCommits() {
+  filteredCommits = commits.filter((commit) => { 
+      return commit.datetime < commitMaxTime;
+  });
+}
+
+function updateTimeDisplay() {
+  commitProgress = Number(timeSlider.value); // Get slider value
+  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
+  updateFilteredCommits();
+}
+
+timeSlider.addEventListener('input', updateTimeDisplay);
+updateTimeDisplay();
+
+//global variables for scatterplot rendering
 const width = 1000;
 const height = 600;
 let xScale = d3
   .scaleTime()
-  .domain(d3.extent(commits, (d) => d.datetime))
+  .domain(d3.extent(filteredCommits, (d) => d.datetime))
   .range([0, width])
   .nice();
 let yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
-function renderScatterPlot(data, commits) {
+function renderScatterPlot(data, filteredCommits) {
  // Put all the JS code of Steps inside this function
 const width = 1000;
 const height = 600;
 
  // Sort commits by total lines in descending order
-const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+const sortedCommits = d3.sort(filteredCommits, (d) => -d.totalLines);
 
+d3.select('svg').remove(); // first clear the svg
 const svg = d3
   .select('#chart')
   .append('svg')
   .attr('viewBox', `0 0 ${width} ${height}`)
   .style('overflow', 'visible');
 
-const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+const [minLines, maxLines] = d3.extent(filteredCommits, (d) => d.totalLines);
 const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 25]); // adjust these values based on your experimentation
 
 const dots = svg.append('g').attr('class', 'dots');
 
+dots.selectAll('circle').remove();
 dots
   .selectAll('circle')
   .data(sortedCommits)
@@ -312,32 +345,4 @@ function renderLanguageBreakdown(selection) {
         `;
   }
 }
-
-let commitProgress = 100; // represents max time in percentage
-//creating time scale to map percent to date
-let timeScale = d3.scaleTime(
-  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
-  [0, 100],
-);
-let commitMaxTime = timeScale.invert(commitProgress);
-
-const timeSlider = document.getElementById('timeSlider');
-const selectedTime = d3.select('#selectedTime');
-selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
-
-function updateTimeDisplay() {
-  commitProgress = Number(timeSlider.value); // Get slider value
-  selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
-  updateFilteredCommits();
-}
-
-let filteredCommits = commits;
-function updateFilteredCommits() {
-  filteredCommits = commits.filter((commit) => { 
-      return commit.datetime <= commitMaxTime;
-  });
-}
-
-timeSlider.addEventListener('input', updateTimeDisplay);
-updateTimeDisplay();
 
