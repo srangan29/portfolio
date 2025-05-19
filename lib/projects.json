@@ -17,14 +17,14 @@
         "description": "Final Project for DSC80 (Practice and Application of Data Science) at UCSD. Centered around using a recipe ratings' dataset and making conclusions based off exploration of said dataset. Utilizes Python, Pandas, Plotly, and more."
     },
     {
-        "title": "Repudiandae repellat sunt quisquam?",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Veritatis maiores sapiente alias aspernatur, minus at commodi! Laborum odit perferendis est quidem dolores nisi at iste dolor repellat voluptas placeat ipsa corporis, ipsam quas dolore? Iure inventore voluptates consequatur."
+        "title": "A Cycleology Visualization: Bike Traffic in Boston",
+        "year": "2025",
+        "image": "cycle.png",
+        "description": "A geospatial visualization of bike traffic in Boston & Cambridge, customized with tooltips and a filter to see bike traffic by time of day."
     },
     {
         "title": "Temporibus distinctio nesciunt qui!",
-        "year": "2023",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Velit excepturi cupiditate hic odio possimus quam earum in ratione consequatur placeat necessitatibus enim cumque eveniet illo doloremque adipisci aut sed dolorum nam asperiores, illum impedit! Voluptatibus fuga deleniti magni."
     },
@@ -54,7 +54,7 @@
     },
     {
         "title": "Ipsum dolorum earum magnam?",
-        "year": "2019",
+        "year": "2013",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Blanditiis magnam facere eos, provident ipsum, vitae hic animi aut expedita itaque deserunt accusamus molestias iure porro ab dolorum unde tempora, assumenda ad officiis odio eum quo dolor. Non, sunt."
     },
