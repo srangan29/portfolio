@@ -311,3 +311,25 @@ function renderLanguageBreakdown(selection) {
         `;
   }
 }
+
+let commitProgress = 100; // represents max time in percentage
+//creating time scale to map percent to date
+let timeScale = d3.scaleTime(
+  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
+  [0, 100],
+);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+const timeSlider = document.getElementById('timeSlider');
+const selectedTime = document.getElementById('selectedTime');
+selectedTime.textContent = commitMaxTime.toLocaleString();
+
+function updateTimeDisplay() {
+  commitProgress = Number(timeSlider.value); // Get slider value
+  selectedTime.textContent = timeScale.invert(commitProgress).toLocaleString();
+}
+
+timeSlider.addEventListener('input', updateTimeDisplay);
+updateTimeDisplay();
+
+
