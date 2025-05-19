@@ -162,6 +162,13 @@ const svg = d3
   .attr('viewBox', `0 0 ${width} ${height}`)
   .style('overflow', 'visible');
 
+xScale = d3
+  .scaleTime()
+  .domain(d3.extent(filteredCommits, (d) => d.datetime))
+  .range([0, width])
+  .nice();
+yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+
 const [minLines, maxLines] = d3.extent(filteredCommits, (d) => d.totalLines);
 const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 25]); // adjust these values based on your experimentation
 
