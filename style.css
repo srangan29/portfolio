@@ -349,3 +349,14 @@ dl.info {
     margin: 0;
   }
 }
+
+#commitFilter {
+  display: flex;
+}
+#commitLabel {
+    flex: 1;
+    align-items: baseline;
+  }
+#selectedTime {
+    margin-left: auto;
+  }
