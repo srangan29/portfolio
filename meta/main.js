@@ -127,7 +127,6 @@ let commitMaxTime = timeScale.invert(commitProgress);
 
 const timeSlider = document.getElementById('commit-progress');
 const selectedTime = d3.select('#commit-time');
-selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
 
 // filtering commits by time
 let filteredCommits = [];
