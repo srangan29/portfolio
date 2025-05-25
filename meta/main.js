@@ -125,8 +125,8 @@ let timeScale = d3
   .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
 
-const timeSlider = document.getElementById('timeSlider');
-const selectedTime = d3.select('#selectedTime');
+const timeSlider = document.getElementById('commit-progress');
+const selectedTime = d3.select('#commit-time');
 selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
 
 // filtering commits by time
@@ -351,12 +351,12 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
-function updateTimeDisplay() {
+function onTimeSliderChange() {
   commitMaxTime = timeScale.invert(Number(timeSlider.value)); // Get slider value
   selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
   filterCommitsByTime();
   updateScatterPlot(data, filteredCommits);
 }
 
-timeSlider.addEventListener('input', updateTimeDisplay);
-updateTimeDisplay();
+timeSlider.addEventListener('input', onTimeSliderChange);
+onTimeSliderChange();
