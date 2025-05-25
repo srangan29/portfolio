@@ -207,12 +207,14 @@ const yAxis = d3
 svg
   .append('g')
   .attr('transform', `translate(0, ${usableArea.bottom})`)
+  .attr('class', 'x-axis') // new line to mark the g tag
   .call(xAxis);
 
 // Add Y axis
 svg
   .append('g')
   .attr('transform', `translate(${usableArea.left}, 0)`)
+  .attr('class', 'y-axis')  // just for consistency
   .call(yAxis);
 
 createBrushSelector(svg);
@@ -375,10 +377,9 @@ function updateScatterPlot(data, commits) {
   const xAxis = d3.axisBottom(xScale);
 
   // CHANGE: we should clear out the existing xAxis and then create a new one.
-  svg
-    .append('g')
-    .attr('transform', `translate(0, ${usableArea.bottom})`)
-    .call(xAxis);
+  const xAxisGroup = svg.select('g.x-axis');
+  xAxisGroup.selectAll('*').remove();
+  xAxisGroup.call(xAxis);
 
   const dots = svg.select('g.dots');
 
