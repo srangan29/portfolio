@@ -116,10 +116,13 @@ let commits = processCommits(data);
 // FILTER FOR COMMITS BY TIME
 let commitProgress = 100; // represents max time in percentage
 //creating time scale to map percent to date
-let timeScale = d3.scaleTime(
-  [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
-  [0, 100],
-);
+let timeScale = d3
+  .scaleTime()
+  .domain([
+    d3.min(commits, (d) => d.datetime),
+    d3.max(commits, (d) => d.datetime),
+  ])
+  .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
 
 const timeSlider = document.getElementById('timeSlider');
