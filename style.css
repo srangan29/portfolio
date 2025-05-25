@@ -235,7 +235,7 @@ path {
 
 
 circle {
-  transition: 200ms;
+  transition: 200ms; 
   transform-origin: center;
   transform-box: fill-box;
   
@@ -362,6 +362,6 @@ dl.info {
     flex: 1;
     align-items: baseline;
   }
-#selectedTime {
+#commit-time {
     margin-left: auto;
   }
