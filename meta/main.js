@@ -429,6 +429,15 @@ let files = d3
   );
 
 // This code updates the div info
-filesContainer.select('dt > code').text((d) => d.name);
-filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+//filesContainer.select('dt > code').text((d) => d.name);
+//filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+filesContainer.select('dt').html(d => `<code>${d.name}</code> <small>${d.lines.length}</small>`);
+
+// append one div for each line
+filesContainer
+  .select('dd')
+  .selectAll('div')
+  .data((d) => d.lines)
+  .join('div')
+  .attr('class', 'loc');
 }
