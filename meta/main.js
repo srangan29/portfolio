@@ -349,6 +349,7 @@ function onTimeSliderChange() {
   selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 timeSlider.addEventListener('input', onTimeSliderChange);
@@ -403,4 +404,31 @@ function updateScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
       updateTooltipVisibility(false);
     });
+}
+
+function updateFileDisplay(filteredCommits) {
+// after initializing filteredCommits
+let lines = filteredCommits.flatMap((d) => d.lines);
+let files = d3
+  .groups(lines, (d) => d.file)
+  .map(([name, lines]) => {
+    return { name, lines };
+  });
+
+  let filesContainer = d3
+  .select('#files')
+  .selectAll('div')
+  .data(files, (d) => d.name)
+  .join(
+    // This code only runs when the div is initially rendered
+    (enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt').append('code');
+        div.append('dd');
+      }),
+  );
+
+// This code updates the div info
+filesContainer.select('dt > code').text((d) => d.name);
+filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
 }
