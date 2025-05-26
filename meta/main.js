@@ -58,7 +58,7 @@ let commits = processCommits(data);
 console.log(commits);*/
 
 function renderCommitInfo(data, commits) {
-  d3.select('#stats').select('dl').remove();
+  d3.select('#stats dl').remove();
   // Create the dl element
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
@@ -415,7 +415,10 @@ let files = d3
   .groups(lines, (d) => d.file)
   .map(([name, lines]) => {
     return { name, lines };
-  });
+  })
+  .sort((a, b) => b.lines.length - a.lines.length);
+
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   let filesContainer = d3
   .select('#files')
@@ -441,5 +444,7 @@ filesContainer
   .selectAll('div')
   .data((d) => d.lines)
   .join('div')
-  .attr('class', 'loc');
+  .attr('class', 'loc')
+  .attr('style', (d) => `--color: ${colors(d.type)}`);
 }
+
