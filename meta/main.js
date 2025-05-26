@@ -58,6 +58,7 @@ let commits = processCommits(data);
 console.log(commits);*/
 
 function renderCommitInfo(data, commits) {
+  d3.select('#stats').select('dl').remove();
   // Create the dl element
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
@@ -349,6 +350,7 @@ function onTimeSliderChange() {
   selectedTime.text(commitMaxTime.toLocaleString(undefined, {dateStyle:"long", timeStyle:"short"}));
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits);
+  renderCommitInfo(data, filteredCommits);
   updateFileDisplay(filteredCommits);
 }
 
