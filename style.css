@@ -407,7 +407,7 @@ dl.info {
 
 
 
-#scrolly-1 {
+#scrolly-1, #scrolly-2 {
   position: relative;
   display: flex;
   gap: 1rem;
@@ -417,14 +417,20 @@ dl.info {
   }
 }
 
-#scatter-story {
+#scatter-story, #files-story {
   position: relative;
 }
 
-#scatter-plot {
+#scatter-plot, #files-plot {
   position: sticky;
   top: 0;
   left: 0;
   bottom: auto;
   height: 50vh;
 }
+
+#scrolly-2 {
+  flex-direction: row-reverse;
+}
+
+
