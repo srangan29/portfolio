@@ -51,7 +51,8 @@ function processCommits(data) {
         enumerable: false
       });
         return ret;
-    });
+    })
+    .sort((a, b) => a.datetime - b.datetime);
 }
 
 /*let data = await loadData();
@@ -476,7 +477,12 @@ d3.select('#scatter-story')
   );
 
   function onStepEnter(response) {
-  console.log(response);
+  console.log(response.element.__data__.datetime);
+  commitMaxTime = response.element.__data__.datetime; 
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  updateScatterPlot(data, filteredCommits);
+  renderCommitInfo(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 const scroller = scrollama();
