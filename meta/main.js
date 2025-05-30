@@ -493,6 +493,7 @@ scroller
   })
   .onStepEnter(onStepEnter);
 
+  // files scrolly
   d3.select('#files-story')
   .selectAll('.step')
   .data(commits)
@@ -518,7 +519,8 @@ scroller
 	`,
   );
 
-  scroller
+  const scroller2 = scrollama()
+  scroller2
   .setup({
     container: '#scrolly-2',
     step: '#scrolly-2 .step',
