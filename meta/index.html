@@ -16,16 +16,6 @@ This page includes stats about the code of this website.
 <label id="commitLabel">Show commits until: <input type=range min=0 max=100 id="commit-progress">
   <time id="commit-time"></time>
 </label></div>
-<dl id="files">
-  <!-- we want the following structure for each file:
-  <div>
-    <dt>
-      <code>{file.name}</code>
-    </dt>
-    <dd>{file.lines.length} lines</dd>
-  </div>
-  -->
-</dl>
 <h2>Commits by time of day</h2>
 <div id="scrolly-1">
   <div id="scatter-story">some filler text here</div>
@@ -42,9 +32,20 @@ This page includes stats about the code of this website.
 
   <!-- Add: Time, author, lines edited -->
 </dl>
-</div>
-</div>
 <p id="selection-count">No commits selected</p>
 <dl id="language-breakdown" class="stats"></dl>
+</div>
+</div>
+
+<dl id="files">
+  <!-- we want the following structure for each file:
+  <div>
+    <dt>
+      <code>{file.name}</code>
+    </dt>
+    <dd>{file.lines.length} lines</dd>
+  </div>
+  -->
+</dl>
 </body>
 </html>
