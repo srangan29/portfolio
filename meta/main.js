@@ -298,7 +298,7 @@ function renderSelectionCount(selection) {
 
 function renderLanguageBreakdown(selection) {
   const selectedCommits = selection
-    ? commitMaxTimeommits.filter((d) => isCommitSelected(selection, d))
+    ? commits.filter((d) => isCommitSelected(selection, d))
     : [];
   const container = document.getElementById('language-breakdown');
 
